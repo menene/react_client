@@ -1,8 +1,11 @@
-import Router from '@pages/Router'
+import { NavigationProvider } from '@hooks/useNavigate'
+import Router from './router'
 
 function App() {
     return (
-        <Router />
+        <NavigationProvider>
+            <Router />
+        </NavigationProvider>
     )
 }
 
