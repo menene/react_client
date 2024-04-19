@@ -1,4 +1,5 @@
 import useNavigate from '@hooks/useNavigate'
+
 import Nav from '@components/Nav'
 
 import Login from '@pages/Login';
@@ -28,11 +29,14 @@ const routes = {
         component: Login,
         requiresAuth: false
     },
+    // '/register': {
+    //     component: Register,
+    //     requiresAuth: false
+    // },
 }
 
 function Router() {
-    const { page, navigate } = useNavigate()
-
+    const { page } = useNavigate()
 
     let CurrentPage = () => <h1>404 Página no encontrada 🥲</h1>
 

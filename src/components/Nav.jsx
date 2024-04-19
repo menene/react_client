@@ -9,7 +9,7 @@ const Nav = () => {
             <a href="#/about" onClick={() => navigate('/about')}>Sobre</a> |
             {
                 isLoggedIn ? (
-                    <a href="#/reporte" onClick={() => navigate('/report')}>Logout</a> |
+                    <a href="#/reporte" onClick={() => navigate('/report')}>Reporte</a> |
                     <a href="#/logout" onClick={() => navigate('/logout')}>Logout</a>
                 ) : (
                     <a href="#/login" onClick={() => navigate('/login')}>Login</a>
