@@ -8,7 +8,9 @@ export default defineConfig({
     alias: {
       '@pages': '/src/pages',
       '@components': '/src/components',
-      '@hooks': '/src/hooks'
+      '@hooks': '/src/hooks',
+      '@assets': '/src/assets',
+      '@styles': '/src/styles'
     }
   }
 })
