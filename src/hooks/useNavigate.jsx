@@ -16,6 +16,7 @@ const NavigationProvider = ({ children }) => {
     const navigate = (url) => {
         console.log('Pagina actual', url)
         setPage(url)
+        window.location.hash = url;
     }
 
     return (
