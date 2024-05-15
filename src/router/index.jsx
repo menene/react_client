@@ -9,37 +9,51 @@ import Home from '@pages/Home';
 import About from '@pages/About';
 import Dashboard from '@pages/Dashboard';
 import Reporte from '@pages/Reporte';
+import Products from '@pages/Products';
+import Product from '@pages/Product';
 
-const routes = {
-    '/': {
+const routes = [
+    {
+        path: "/",
         component: Home,
         requiresAuth: false
     },
-    '/about': {
+    {
+        path: '/about',
         component: About,
         requiresAuth: false
     },
-    '/dashboard': {
+    {
+        path: '/dashboard',
         component: Dashboard,
         requiresAuth: true
     },
-    '/report': {
+    {
+        path: '/report',
         component: Reporte,
         requiresAuth: true
     },
-    '/login': {
+    {
+        path: '/login',
         component: Login,
         requiresAuth: false
     },
-    '/logout': {
+    {
+        path: '/logout',
         component: Logout,
         requiresAuth: false
     },
-    // '/register': {
-    //     component: Register,
-    //     requiresAuth: false
-    // },
-}
+    {
+        path: '/products',
+        component: Products,
+        requiresAuth: false
+    },
+    {
+        path: '/products/*',
+        component: Product,
+        requiresAuth: false
+    },
+]
 
 function Router() {
     const { token } = useToken()
@@ -47,24 +61,38 @@ function Router() {
 
     let CurrentPage = () => <h1>404 Página no encontrada 🥲</h1>
 
-    if (routes[page]) {
-        if (routes[page].requiresAuth && !token) {
-            CurrentPage = Login
+    const route = routes.find((r) => {
+        const regex = new RegExp(`^${r.path.replace(/\*/g, ".*")}$`);
+        return regex.test(page);
+    });
+
+    let id = null;
+    if (route) {
+        if (route.path == "/logout") {
+            window.location.replace("/");
+            CurrentPage = Home
         } else {
-            CurrentPage = routes[page].component
+            if (route.requiresAuth && !token) {
+                CurrentPage = Login
+            } else {
+                CurrentPage = route.component
+            }
+        }
+
+        if (route.path.includes("*")) {
+            id = page.split("/")[2];
         }
     }
 
-    if (page == "/logout") {
-        window.location.replace("/");
-    }
+    console.log(route)
+    console.log(id)
 
     return (
         <div>
             <Nav />
             <div className="container mt-3">
                 <div className="p-5 mb-4 bg-body-tertiary rounded-3">
-                    <CurrentPage />
+                    <CurrentPage id={id} />
                 </div>
             </div>
         </div>

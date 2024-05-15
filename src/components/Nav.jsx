@@ -33,6 +33,11 @@ const Nav = () => {
                                 <i className="fa-solid fa-circle-info"></i> Sobre nosotros
                             </a>
                         </li>
+                        <li className="nav-item">
+                            <a className={page == "/products" ? "nav-link active" : "nav-link"} onClick={() => navigate('/products')}>
+                                <i className="fa-solid fa-boxes"></i> Productos
+                            </a>
+                        </li>
                         {
                             isLoggedIn ? (
                                 <>
@@ -42,14 +47,14 @@ const Nav = () => {
                                         </a>
                                     </li>
                                     <li className="nav-item">
-                                        <a className={page == "/logout" ? "nav-link active" : "nav-link"}  onClick={() => navigate('/logout')}>
+                                        <a className={page == "/logout" ? "nav-link active" : "nav-link"} onClick={() => navigate('/logout')}>
                                             <i className="fa-solid fa-right-from-bracket"></i> Salir
                                         </a>
                                     </li>
                                 </>
                             ) : (
                                 <li className="nav-item">
-                                    <a className={page == "/login" ? "nav-link active" : "nav-link"}  onClick={() => navigate('/login')}>
+                                    <a className={page == "/login" ? "nav-link active" : "nav-link"} onClick={() => navigate('/login')}>
                                         <i className="fa-solid fa-right-to-bracket"></i> Ingresar
                                     </a>
                                 </li>
